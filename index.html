@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guest Room Attendant Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 1%;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .header {
+            background: linear-gradient(135deg, #434343 0%, #000000 100%);
+            color: white;
+            padding: 15px 1%;
+            text-align: center;
+        }
+        h1 {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 2px solid #dee2e6;
+            overflow-x: auto;
+            flex-wrap: wrap;
+        }
+        .tab {
+            flex: 1;
+            min-width: 80px;
+            padding: 12px 8px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            color: #6c757d;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+        .tab.active {
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            background: white;
+        }
+        .content {
+            padding: 1%;
+            min-height: 400px;
+        }
+        .theme {
+            display: none;
+            animation: fadeIn 0.4s;
+        }
+        .theme.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .section {
+            margin-bottom: 15px;
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        .section h3 {
+            font-size: 14px;
+            color: #343a40;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .section h3::before {
+            content: '✓';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 20px;
+            margin-right: 8px;
+            font-size: 12px;
+        }
+        .section ul {
+            list-style: none;
+            font-size: 13px;
+            color: #495057;
+        }
+        .section li {
+            padding: 6px 0 6px 20px;
+            position: relative;
+        }
+        .section li::before {
+            content: '•';
+            position: absolute;
+            left: 8px;
+            color: #667eea;
+            font-weight: bold;
+        }
+        .tip {
+            background: #fff3cd;
+            border-left-color: #ffc107;
+            margin-top: 10px;
+        }
+        .tip h3 {
+            color: #856404;
+        }
+        .tip h3::before {
+            content: '💡';
+            background: #ffc107;
+        }
+        .checklist {
+            background: #e7f3ff;
+            border-left-color: #0066cc;
+            margin-top: 10px;
+        }
+        .checklist h3 {
+            color: #004085;
+        }
+        .checklist h3::before {
+            content: '📋';
+            background: #0066cc;
+        }
+        .warning {
+            background: #ffe5e5;
+            border-left-color: #dc3545;
+        }
+        .warning h3 {
+            color: #721c24;
+        }
+        .warning h3::before {
+            content: '⚠️';
+            background: #dc3545;
+        }
+        .time {
+            background: #e8f5e9;
+            border-left-color: #28a745;
+        }
+        .time h3 {
+            color: #155724;
+        }
+        .time h3::before {
+            content: '⏱️';
+            background: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Guest Room Attendant Beginner's Guide</h1>
+        </div>
+        
+        <div class="tabs">
+            <button class="tab active" onclick="showTheme('standard')">Standard</button>
+            <button class="tab" onclick="showTheme('suite')">Suite</button>
+            <button class="tab" onclick="showTheme('luxury')">Luxury</button>
+            <button class="tab" onclick="showTheme('budget')">Budget</button>
+            <button class="tab" onclick="showTheme('business')">Business</button>
+            <button class="tab" onclick="showTheme('basics')">Basics</button>
+            <button class="tab" onclick="showTheme('safety')">Safety</button>
+            <button class="tab" onclick="showTheme('stains')">Stains</button>
+            <button class="tab" onclick="showTheme('guest')">Guest Service</button>
+            <button class="tab" onclick="showTheme('turndown')">Turndown</button>
+            <button class="tab" onclick="showTheme('efficiency')">Efficiency</button>
+            <button class="tab" onclick="showTheme('problems')">Problems</button>
+        </div>
+
+        <div class="content">
+            <div id="standard" class="theme active">
+                <div class="section">
+                    <h3>Room Setup</h3>
+                    <ul>
+                        <li>Change bed linens completely (sheets, pillowcases, duvet)</li>
+                        <li>Replace towels (bath, hand, face)</li>
+                        <li>Dust all surfaces including nightstands and TV</li>
+                        <li>Vacuum carpets and mop bathroom floor</li>
+                        <li>Empty trash bins and replace liners</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3>Bathroom Standards</h3>
+                    <ul>
+                        <li>Scrub toilet, sink, and tub/shower thoroughly</li>
+                        <li>Polish mirrors and chrome fixtures</li>
+                        <li>Restock amenities (soap, shampoo, toilet paper)</li>
+                        <li>Check for hair and stains</li>
+                        <li>Ensure drain is clear</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3>Final Touches</h3>
+                    <ul>
+                        <li>Arrange pillows neatly on bed</li>
+                        <li>Set temperature to 72°F (22°C)</li>
+                        <li>Close curtains halfway</li>
+                        <li>Check all lights work</li>
+                        <li>Place welcome card on desk</li>
+                    </ul>
+                </div>
+
+                <div class="section checklist">
+                    <h3>Step-by-Step Process</h3>
+                    <ul>
+                        <li>Step 1: Knock and announce "Housekeeping"</li>
+                        <li>Step 2: Open curtains for natural light</li>
+                        <li>Step 3: Strip bed and collect used towels</li>
+                        <li>Step 4: Clean bathroom first (wet areas dry while you work)</li>
+                        <li>Step 5: Dust high to low (ceiling fan, fixtures, furniture)</li>
+                        <li>Step 6: Make bed with fresh linens</li>
+                        <li>Step 7: Vacuum/mop floors last</li>
+                        <li>Step 8: Final inspection walk-through</li>
+                    </ul>
+                </div>
+
+                <div class="section time">
+                    <h3>Time Management</h3>
+                    <ul>
+                        <li>Bedroom cleaning: 10-12 minutes</li>
+                        <li>Bathroom cleaning: 8-10 minutes</li>
+                        <li>Final touches: 2-3 minutes</li>
+                        <li>Total target time: 20-25 minutes</li>
+                        <li>Daily room quota: 14-16 rooms per shift</li>
+                    </ul>
+                </div>
+
+                <div class="section tip">
+                    <h3>Pro Tips</h3>
+                    <ul>
+                        <li>Start from farthest point and work toward door</li>
+                        <li>Top-to-bottom cleaning prevents re-work</li>
+                        <li>Keep cart stocked and organized</li>
+                        <li>Use microfiber cloths for streak-free surfaces</li>
+                        <li>Always wear gloves when handling linens</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="suite" class="theme">
+                <div class="section">
+                    <h3>Living Area</h3>
+                    <ul>
+                        <li>Vacuum all carpeted areas thoroughly</li>
+                        <li>Dust coffee table, side tables, entertainment center</li>
+                        <li>Arrange sofa cushions and throw pillows</li>
+                        <li>Clean glass surfaces (windows, mirrors)</li>
+                        <li>Restock minibar and check expiration dates</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3>Bedroom Area</h3>
+                    <ul>
+                        <li>Premium linens with hospital corners</li>
+                        <li>Extra pillows arranged decoratively</li>
+                        <li>Turn-down service preparation</li>
+                        <li>Check closet for hangers (minimum 10)</li>
+                        <li>Ensure luggage rack is clean and stable</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3>Kitchenette</h3>
+                    <ul>
+                        <li>Clean countertops and sink thoroughly</li>
+                        <li>Wipe down microwave inside and out</li>
+                        <li>Check refrigerator temperature and cleanliness</li>
+                        <li>Restock coffee, tea, and utensils</li>
+                        <li>Replace sponge and dishcloth</li>
+                    </ul>
+                </div>
+
+                <div class="section checklist">
+                    <h3>Suite Inspection Points</h3>
+                    <ul>
+                        <li>Check all doors and locks function properly</li>
+                        <li>Test all light switches and dimmers</li>
+                        <li>Verify AC/heating in all rooms</li>
+                        <li>Inspect furniture for damage or stains</li>
+                        <li>Ensure all TV remotes have batteries</li>
+                        <li>Check balcony/patio is clean and safe</li>
+                    </ul>
+                </div>
+
+                <div class="section time">
+                    <h3>Time Breakdown</h3>
+                    <ul>
+                        <li>Living area: 15-20 minutes</li>
+                        <li>Bedroom: 15-18 minutes</li>
+                        <li>Bathrooms: 10-12 minutes each</li>
+                        <li>Kitchenette: 8-10 minutes</li>
+                        <li>Total target: 45-60 minutes</li>
+                    </ul>
+                </div>
+
+                <div class="section tip">
+                    <h3>Pro Tips</h3>
+                    <ul>
+                        <li>Clean one room at a time completely</li>
+                        <li>Pay attention to multiple bathrooms</li>
+                        <li>Check behind doors and under furniture</li>
+                        <li>Coordinate with turn-down service team</li>
+                        <li>Report VIP arrivals to supervisor</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="luxury" class="theme">
+                <div class="section">
+                    <h3>Premium Standards</h3>
+                    <ul>
+                        <li>Egyptian cotton linens with decorative fold</li>
+                        <li>Multiple pillow options (down, firm, soft)</li>
+                        <li>Fresh flowers in bedroom and bathroom</li>
+                        <li>Premium amenities (full-size bottles)</li>
+                        <li>Robe and slippers perfectly positioned</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3>Spa Bathroom</h3>
+                    <ul>
+                        <li>Deep clean marble/stone surfaces</li>
+                        <li>Polish all fixtures to mirror shine</li>
+                        <li>Stock luxury bath products and candles</li>
+                        <li>Roll towels decoratively</li>
+                        <li>Place bath mat and ensure heated floor works</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3>Details Matter</h3>
+                    <ul>
+                        <li>Straighten all artwork and decor</li>
+                        <li>Check and reset smart room controls</li>
+                        <li>Ensure blackout curtains function properly</li>
+                        <li>Stock personalized welcome amenities</li>
+                        <li>Verify minibar inventory is complete</li>
+                    </ul>
+                </div>
+
+                <div class="section checklist">
+                    <h3>White Glove Checklist</h3>
+                    <ul>
+                        <li>No fingerprints on any glass or mirror</li>
+                        <li>No dust visible anywhere (use flashlight test)</li>
+                        <li>All items arranged symmetrically</li>
+                        <li>Fresh scent throughout (subtle, not overpowering)</li>
+                        <li>Temperature set to guest preference if known</li>
+                        <li>Personalized note for repeat guests</li>
+                    </ul>
+                </div>
+
+                <div class="section time">
+                    <h3>Luxury Time Standards</h3>
+                    <ul>
+                        <li>Bedroom and living: 30-35 minutes</li>
+                        <li>Spa bathroom: 20-25 minutes</li>
+                        <li>Detail work: 10-15 minutes</li>
+                        <li>Final inspection: 5-10 minutes</li>
+                        <li>Total: 60-90 minutes per room</li>
+                    </ul>
+                </div>
+
+                <div class="section tip">
+                    <h3>Pro Tips</h3>
+                    <ul>
+                        <li>White glove standards - check everything twice</li>
+                        <li>Anticipate guest needs before they ask</li>
+                        <li>Document guest preferences for next visit</li>
+                        <li>Use hotel's signature scent sparingly</li>
+                        <li>Never rush - quality over speed always</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="budget" class="theme">
+                <div class="section">
+                    <h3>Efficient Cleaning</h3>
+                    <ul>
+                        <li>Change linens (fitted sheet, flat sheet, pillowcase)</li>
+                        <li>Basic towel set (1 bath, 1 hand)</li>
+                        <li>Quick dust of surfaces</li>
+                        <li>Vacuum high-traffic areas</li>
+                        <li>Empty trash</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3>Bathroom Basics</h3>
+                    <ul>
+                        <li>Clean toilet, sink, and shower</li>
+                        <li>Wipe mirror</li>
+                        <li>Basic amenities (soap bar, toilet paper)</li>
+                        <li>Quick floor wipe</li>
+                        <li>Spray air freshener</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3>Time-Saving Tips</h3>
+                    <ul>
+                        <li>Use multi-surface cleaner</li>
+                        <li>Keep cart organized for quick access</li>
+                        <li>Focus on visible cleanliness</li>
+                        <li>Check lock and key function</li>
+                        <li>Report maintenance issues immediately</li>
+                    </ul>
+                </div>
+
+                <div class="section checklist">
+                    <h3>Speed Cleaning Order</h3>
+                    <ul>
+                        <li>Enter, assess room condition (30 seconds)</li>
+                        <li>Strip bed, grab towels (2 minutes)</li>
+                        <li>Spray bathroom, let sit (1 minute)</li>
+                        <li>Make bed while chemicals work (5 minutes)</li>
+                        <li>Clean bathroom thoroughly (6 minutes)</li>
+                        <li>Dust and vacuum main room (4 minutes)</li>
+                        <li>Final check and exit (1 minute)</li>
+                    </ul>
+                </div>
+
+                <div class="section time">
+                    <h3>Budget Room Targets</h3>
+                    <ul>
+                        <li>Bedroom: 7-8 minutes</li>
+                        <li>Bathroom: 6-7 minutes</li>
+                        <li>Final touches: 1-2 minutes</li>
+                        <li>Total: 15-20 minutes maximum</li>
+                        <li>Daily quota: 18-20 rooms</li>
+                    </ul>
+                </div>
+
+                <div class="section tip">
+                    <h3>Pro Tips</h3>
+                    <ul>
+                        <li>Speed without sacrificing cleanliness</li>
+                        <li>Consistent routine increases efficiency</li>
+                        <li>Batch similar tasks (all beds, all bathrooms)</li>
+                        <li>Keep cleaning supplies within arm's reach</li>
+                        <li>Double-check high-touch surfaces</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="business" class="theme">
+                <div class="section">
+                    <h3>Work Area Setup</h3>
+                    <ul>
+                        <li>Clean and polish desk thoroughly</li>
+                        <li>Ensure ergonomic chair is adjusted</li>
+                        <li>Stock desk supplies (pens, notepad)</li>
+                        <li>Test all power outlets and USB ports</li>
+                        <li>Verify WiFi connection and password card</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3>Tech Considerations</h3>
+                    <ul>
+                        <li>Check TV remote batteries</li>
+                        <li>Ensure HDMI cable is accessible</li>
+                        <li>Test bedside charging stations</li>
+                        <li>Verify phone is working</li>
+                        <li>Check alarm clock is set correctly</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3>Professional Touches</h3>
+                    <ul>
+                        <li>Iron and ironing board in closet</li>
+                        <li>Extra hangers for suits (minimum 8)</li>
+                        <li>Shoe polish kit available</li>
+                        <li>Business publications or newspapers</li>
+                        <li>Ensure privacy - do not disturb sign works</li>
+                    </ul>
+                </div>
+
+                <div class="section checklist">
+                    <h3>Business Traveler Needs</h3>
+                    <ul>
+                        <li>Bright task lighting at desk (check bulbs)</li>
+                        <li>Extra towels for gym users</li>
+                        <li>Coffee maker with fresh supplies</li>
+                        <li>Mini fridge stocked and cold</li>
+                        <li>Quiet AC/heating (check for noise)</li>
+                        <li>Blackout curtains fully functional</li>
+                    </ul>
+                </div>
+
+                <div class="section time">
+                    <h3>Business Room Schedule</h3>
+                    <ul>
+                        <li>Best cleaning time: 8am-11am</li>
+                        <li>Avoid afternoons (video calls)</li>
+                        <li>Work area: 10-12 minutes</li>
+                        <li>Bedroom/bath: 15-18 minutes</li>
+                        <li>Total: 25-35 minutes</li>
+                    </ul>
+                </div>
+
+                <div class="section tip">
+                    <h3>Pro Tips</h3>
+                    <ul>
+                        <li>Early morning cleaning preferred (before 9am)</li>
+                        <li>Respect workspace - don't move papers</li>
+                        <li>Be extra quiet if guest is working</li>
+                        <li>Prioritize fast WiFi and power access</li>
+                        <li>Keep extra office supplies on cart</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="basics" class="theme">
+                <div class="section">
+                    <h3>Essential Equipment</h3>
+                    <ul>
+                        <li>Housekeeping cart with organized compartments</li>
+                        <li>Vacuum cleaner (backpack or upright)</li>
+                        <li>Microfiber cloths (color-coded by area)</li>
+                        <li>Spray bottles (glass, multi-surface, bathroom)</li>
+                        <li>Mop and bucket with wringer</li>
+                        <li>Gloves (nitrile for chemical resistance)</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3>Cleaning Chemicals</h3>
+                    <ul>
+                        <li>All-purpose cleaner for general surfaces</li>
+                        <li>Glass cleaner for mirrors and windows</li>
+                        <li>Bathroom disinfectant (kills 99.9% germs)</li>
+                        <li>Toilet bowl cleaner with bleach</li>
+                        <li>Floor cleaner appropriate for surface type</li>
+                        <li>Air freshener (hotel signature scent)</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3>Linen Management</h3>
+                    <ul>
+                        <li>Fitted sheets, flat sheets, pillowcases</li>
+                        <li>Duvet covers and decorative pillows</li>
+                        <li>Bath towels, hand towels, washcloths</li>
+                        <li>Bath mats and shower curtains</li>
+                        <li>Always check for stains before use</li>
+                        <li>Fold linens consistently for storage</li>
+                    </ul>
+                </div>
+
+                <div class="section checklist">
+                    <h3>Daily Checklist</h3>
+                    <ul>
+                        <li>Clock in and review room assignment</li>
+                        <li>Stock cart with all supplies needed</li>
+                        <li>Check radio/phone is working</li>
+                        <li>Review special requests or VIP rooms</li>
+                        <li>Clean assigned rooms in order</li>
+                        <li>Report maintenance issues immediately</li>
+                        <li>Return cart and unused supplies</li>
+                        <li>Complete paperwork and clock out</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3>Bed Making Technique</h3>
+                    <ul>
+                        <li>Start with mattress pad smooth and centered</li>
+                        <li>Fitted sheet: start opposite corners, pull tight</li>
+                        <li>Flat sheet: top edge even with mattress top</li>
+                        <li>Hospital corners: 45-degree fold, tuck under</li>
+                        <li>Duvet: shake to distribute filling evenly</li>
+                        <li>Pillows: fluff and arrange standing against headboard</li>
+                    </ul>
+                </div>
+
+                <div class="section tip">
+                    <h3>Beginner Tips</h3>
+                    <ul>
+                        <li>Always knock and announce before entering</li>
+                        <li>Wear comfortable, non-slip shoes</li>
+                        <li>Stay hydrated throughout your shift</li>
+                        <li>Ask questions - experienced staff want to help</li>
+                        <li>Take photos of perfect rooms for reference</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="safety" class="theme">
+                <div class="section warning">
+                    <h3>Chemical Safety</h3>
+                    <ul>
+                        <li>NEVER mix bleach with ammonia (toxic gas)</li>
+                        <li>Always wear gloves when handling chemicals</li>
+                        <li>Read product labels and follow instructions</li>
+                        <li>Use proper ventilation when cleaning</li>
+                        <li>Store chemicals in original containers only</li>
+                        <li>Keep safety data sheets (SDS) accessible</li>
+                    </ul>
+                </div>
+
+                <div class="section warning">
+                    <h3>Physical Safety</h3>
+                    <ul>
+                        <li>Lift with legs, not back (bend at knees)</li>
+                        <li>Ask for help with heavy items over 25 lbs</li>
+                        <li>Use carts to transport supplies, don't carry</li>
+                        <li>Wear anti-slip shoes on wet floors</li>
+                        <li>Place "wet floor" signs immediately</li>
+                        <li>Report spills and hazards right away</li>
+                    </ul>
+                </div>
+
+                <div class="section warning">
+                    <h3>Guest Property</h3>
+                    <ul>
+                        <li>Never touch guest belongings unnecessarily</li>
+                        <li>Don't move valuables or documents</li>
+                        <li>Report found items to supervisor immediately</li>
+                        <li>Knock multiple times before entering with key</li>
+                        <li>Respect "Do Not Disturb" signs always</li>
+                        <li>If guest is present, ask permission to clean</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3>Emergency Procedures</h3>
+                    <ul>
+                        <li>Know location of fire extinguishers</li>
+                        <li>Memorize emergency exit routes</li>
+                        <li>Report suspicious items or behavior</li>
+                        <li>Never enter room with safety concerns</li>
+                        <li>Call security for any threatening situation</li>
+                        <li>Know first aid station location</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3>Injury Prevention</h3>
+                    <ul>
+                        <li>Stretch before starting shift</li>
+                        <li>Take scheduled breaks to rest</li>
+                        <li>Alternate tasks to avoid repetitive strain</li>
+                        <li>Use proper posture when making beds</li>
+                        <li>Report pain or discomfort early</li>
+                        <li>Use ergonomic tools when available</li>
+                    </ul>
+                </div>
+
+                <div class="section tip">
+                    <h3>Safety First</h3>
+                    <ul>
+                        <li>Your safety is more important than speed</li>
+                        <li>Report ALL injuries, even minor ones</li>
+                        <li>Follow hotel safety protocols exactly</li>
+                        <li>Never take shortcuts with safety</li>
+                        <li>Attend all safety training sessions</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="stains" class="theme">
+                <div class="section">
+                    <h3>Common Stains</h3>
+                    <ul>
+                        <li>Coffee/Tea: Blot, cold water, enzyme cleaner</li>
+                        <li>Wine: Salt or club soda immediately, then wash</li>
+                        <li>Blood: Cold water only (hot sets stain)</li>
+                        <li>Ink: Rubbing alcohol on cotton ball, blot</li>
+                        <li>Makeup: Dish soap and warm water</li>
+                        <li>Grease: Cornstarch to absorb, then detergent</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3>Carpet Stains</h3>
+                    <ul>
+                        <li>Act fast - fresh stains easier to remove</li>
+                        <li>Blot, never rub (rubbing spreads stain)</li>
+                        <li>Work from outside edge toward center</li>
+                        <li>Use white cloths (colored cloths may bleed)</li>
+                        <li>Test cleaner on hidden area first</li>
+                        <li>Extract moisture with dry towels after cleaning</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3>Bathroom Stains</h3>
+                    <ul>
+                        <li>Hard water: Vinegar solution, let sit 15 minutes</li>
+                        <li>Soap scum: Baking soda paste, scrub gently</li>
+                        <li>Mildew: Bleach solution (well-ventilated area)</li>
+                        <li>Rust: Commercial rust remover only</li>
+                        <li>Toilet ring: Pumice stone (porcelain only)</li>
+                        <li>Grout: Hydrogen peroxide and baking soda</li>
+                    </ul>
+                </div>
+
+                <div class="section checklist">
+                    <h3>Stain Removal Steps</h3>
+                    <ul>
+                        <li>Step 1: Identify stain type if possible</li>
+                        <li>Step 2: Remove excess (scrape or blot)</li>
+                        <li>Step 3: Pre-treat with appropriate solution</li>
+                        <li>Step 4: Let solution sit (5-15 minutes)</li>
+                        <li>Step 5: Blot or scrub gently</li>
+                        <li>Step 6: Rinse with clean water</li>
+                        <li>Step 7: Dry thoroughly</li>
+                        <li>Step 8: Repeat if necessary</li>
+                    </ul>
+                </div>
+
+                <div class="section warning">
+                    <h3>What to Report</h3>
+                    <ul>
+                        <li>Stains that won't come out after 2 attempts</li>
+                        <li>Burns or permanent damage to surfaces</li>
+                        <li>Large or unusual stains (investigate first)</li>
+                        <li>Bodily fluid stains (biohazard protocol)</li>
+                        <li>Chemical spills or unknown substances</li>
+                        <li>Any damage to hotel property</li>
+                    </ul>
+                </div>
+
+                <div class="section tip">
+                    <h3>Pro Tips</h3>
+                    <ul>
+                        <li>Cold water for protein stains (blood, egg)</li>
+                        <li>Hot water for grease and oil stains</li>
+                        <li>Always test cleaners in hidden spots first</li>
+                        <li>Keep stain guide card with supplies</li>
+                        <li>Document damage with photos if needed</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="guest" class="theme">
+                <div class="section">
+                    <h3>Guest Interaction</h3>
+                    <ul>
+                        <li>Always greet guests with smile and eye contact</li>
+                        <li>Identify yourself: "Good morning, I'm housekeeping"</li>
+                        <li>Ask preferred cleaning time if guest is present</li>
+                        <li>Offer assistance: "Is there anything you need?"</li>
+                        <li>Respect guest privacy - don't ask personal questions</li>
+                        <li>Keep interactions brief and professional</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3>Communication Skills</h3>
+                    <ul>
+                        <li>Learn basic phrases in common guest languages</li>
+                        <li>Speak clearly and at moderate pace</li>
+                        <li>Use positive body language (open posture)</li>
+                        <li>Listen actively to guest requests</li>
+                        <li>Repeat requests to confirm understanding</li>
+                        <li>Write down complex requests immediately</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3>Handling Requests</h3>
+                    <ul>
+                        <li>Extra towels: Deliver within 15 minutes</li>
+                        <li>Extra pillows/blankets: From linen storage</li>
+                        <li>Toiletries: Stock from housekeeping cart</li>
+                        <li>Ice bucket: Fill and return promptly</li>
+                        <li>Room service tray removal: Clear immediately</li>
+                        <li>Special requests: Report to supervisor</li>
+                    </ul>
+                </div>
+
+                <div class="section checklist">
+                    <h3>Professional Etiquette</h3>
+                    <ul>
+                        <li>Dress in clean, pressed uniform daily</li>
+                        <li>Name badge visible and polished</li>
+                        <li>Hair neat, tied back if long</li>
+                        <li>Minimal jewelry (wedding ring only)</li>
+                        <li>No strong perfume or cologne</li>
+                        <li>Clean, trimmed nails</li>
+                        <li>Closed-toe, non-slip shoes</li>
+                        <li>No personal phone use in guest areas</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3>Difficult Situations</h3>
+                    <ul>
+                        <li>Complaints: Listen calmly, apologize, inform supervisor</li>
+                        <li>Angry guests: Stay calm, don't argue, get manager</li>
+                        <li>Missing items: Report immediately, file incident report</li>
+                        <li>Inappropriate behavior: Leave room, call security</li>
+                        <li>Language barrier: Use simple words, gestures, translator app</li>
+                        <li>Refusal to leave: Don't force, contact front desk</li>
+                    </ul>
+                </div>
+
+                <div class="section tip">
+                    <h3>Excellence Tips</h3>
+                    <ul>
+                        <li>Remember repeat guest preferences</li>
+                        <li>Leave personalized welcome notes for VIPs</li>
+                        <li>Report birthdays/anniversaries to front desk</li>
+                        <li>Anticipate needs (extra towels for families)</li>
+                        <li>Smile - it's heard even on the phone</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="turndown" class="theme">
+                <div class="section">
+                    <h3>Evening Service Basics</h3>
+                    <ul>
+                        <li>Perform between 6pm-9pm (or hotel standard)</li>
+                        <li>Knock and announce before entering</li>
+                        <li>Turn on bedside lamps for ambiance</li>
+                        <li>Close curtains/blinds completely</li>
+                        <li>Adjust temperature to comfort setting</li>
+                        <li>Empty trash and replace liners</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3>Bed Preparation</h3>
+                    <ul>
+                        <li>Pull back duvet to 45-degree angle</li>
+                        <li>Fold top sheet over duvet edge</li>
+                        <li>Remove decorative pillows to closet shelf</li>
+                        <li>Fluff sleeping pillows and arrange at head</li>
+                        <li>Place chocolate/mint on pillow (hotel standard)</li>
+                        <li>Ensure bed looks inviting and ready</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3>Bathroom Refresh</h3>
+                    <ul>
+                        <li>Replace used towels with fresh ones</li>
+                        <li>Wipe down sink and counter</li>
+                        <li>Restock toilet paper if low</li>
+                        <li>Empty wastebasket</li>
+                        <li>Check and refill amenities</li>
+                        <li>Place fresh bath mat if needed</li>
+                    </ul>
+                </div>
+
+                <div class="section checklist">
+                    <h3>Turndown Checklist</h3>
+                    <ul>
+                        <li>Remove room service trays/dishes</li>
+                        <li>Straighten desk and tidy visible areas</li>
+                        <li>Close laptop/tablet if open (gently)</li>
+                        <li>Arrange slippers beside bed</li>
+                        <li>Place robe on bed or chair</li>
+                        <li>Refill water glasses/bottles</li>
+                        <li>Adjust lighting to low/ambient</li>
+                        <li>Leave weather card/next day info</li>
+                    </ul>
+                </div>
+
+                <div class="section time">
+                    <h3>Turndown Timing</h3>
+                    <ul>
+                        <li>Standard room: 5-7 minutes</li>
+                        <li>Suite: 8-12 minutes</li>
+                        <li>Luxury/VIP: 10-15 minutes</li>
+                        <li>Check "Do Not Disturb" status</li>
+                        <li>Skip if guest declines service</li>
+                    </ul>
+                </div>
+
+                <div class="section tip">
+                    <h3>Special Touches</h3>
+                    <ul>
+                        <li>Luxury: Rose petal on pillow, aromatherapy spray</li>
+                        <li>Business: Newspaper, shine shoes if outside door</li>
+                        <li>Romance package: Candles, special treats</li>
+                        <li>Family: Extra pillows, night light for kids</li>
+                        <li>Always maintain quiet, unobtrusive presence</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="efficiency" class="theme">
+                <div class="section">
+                    <h3>Cart Organization</h3>
+                    <ul>
+                        <li>Top shelf: Clean linens (sheets, pillowcases)</li>
+                        <li>Middle shelves: Towels organized by size</li>
+                        <li>Side pockets: Cleaning supplies, spray bottles</li>
+                        <li>Bottom: Vacuum, mop, dirty linen bag</li>
+                        <li>Front hooks: Trash bags, gloves</li>
+                        <li>Restock cart during slow periods</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3>Time Management</h3>
+                    <ul>
+                        <li>Start with checkouts first (priority)</li>
+                        <li>Group rooms by floor/proximity</li>
+                        <li>Do stayovers during guest out times</li>
+                        <li>Use "batch" method: all beds, then bathrooms</li>
+                        <li>Take scheduled breaks to avoid burnout</li>
+                        <li>Track pace: aim for consistent timing</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3>Energy Conservation</h3>
+                    <ul>
+                        <li>Alternate heavy/light tasks to prevent fatigue</li>
+                        <li>Use ergonomic reaching tools for high areas</li>
+                        <li>Push cart, don't pull (better posture)</li>
+                        <li>Squat instead of bending repeatedly</li>
+                        <li>Stay hydrated: water bottle on cart</li>
+                        <li>Proper shoes prevent foot/leg pain</li>
+                    </ul>
+                </div>
+
+                <div class="section checklist">
+                    <h3>Daily Workflow</h3>
+                    <ul>
+                        <li>7:00am: Clock in, review assignments</li>
+                        <li>7:15am: Stock cart with supplies</li>
+                        <li>7:30am: Start with checkout rooms</li>
+                        <li>10:00am: Break (15 minutes)</li>
+                        <li>10:15am: Continue room assignments</li>
+                        <li>12:00pm: Lunch break (30 minutes)</li>
+                        <li>12:30pm: Finish remaining rooms</li>
+                        <li>2:30pm: Final inspections and paperwork</li>
+                        <li>3:00pm: Clock out</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3>Quality vs Speed</h3>
+                    <ul>
+                        <li>Speed comes naturally with practice</li>
+                        <li>Never sacrifice quality for speed</li>
+                        <li>Failed inspection = do it again (wastes time)</li>
+                        <li>Consistent routine increases efficiency</li>
+                        <li>Master basics before trying shortcuts</li>
+                        <li>Ask fast colleagues for their methods</li>
+                    </ul>
+                </div>
+
+                <div class="section tip">
+                    <h3>Pro Efficiency Hacks</h3>
+                    <ul>
+                        <li>Spray bathroom while stripping bed (multi-task)</li>
+                        <li>Use microfiber for faster, better cleaning</li>
+                        <li>Carry small kit for quick stayover refreshes</li>
+                        <li>Position cart to minimize walking</li>
+                        <li>Learn hotel layout to plan optimal route</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="problems" class="theme">
+                <div class="section warning">
+                    <h3>Maintenance Issues</h3>
+                    <ul>
+                        <li>Leaking faucets or toilet - report immediately</li>
+                        <li>Broken AC/heating - high priority</li>
+                        <li>Electrical problems - do not touch, call maintenance</li>
+                        <li>Clogged drains - use plunger first, then report</li>
+                        <li>Damaged furniture - document with photos</li>
+                        <li>Pest sightings - isolate room, notify management</li>
+                    </ul>
+                </div>
+
+                <div class="section warning">
+                    <h3>Bed Bugs Protocol</h3>
+                    <ul>
+                        <li>Signs: tiny brown bugs, blood spots on sheets</li>
+                        <li>DO NOT clean the room further</li>
+                        <li>Notify supervisor immediately</li>
+                        <li>Seal room and mark as out of service</li>
+                        <li>Do not move items from room to cart</li>
+                        <li>Follow hotel's pest control procedure</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3>Lost and Found</h3>
+                    <ul>
+                        <li>Check all areas: under bed, closet, safe</li>
+                        <li>Look in drawers, behind curtains, bathroom</li>
+                        <li>Document item: description, location, date/time</li>
+                        <li>Tag item with room number and your name</li>
+                        <li>Turn in to lost and found immediately</li>
+                        <li>Never keep items, even if seemingly worthless</li>
+                    </ul>
+                </div>
+
+                <div class="section checklist">
+                    <h3>Problem Solving Steps</h3>
+                    <ul>
+                        <li>Step 1: Identify the problem clearly</li>
+                        <li>Step 2: Determine if you can fix it</li>
+                        <li>Step 3: If yes, fix it properly</li>
+                        <li>Step 4: If no, document problem details</li>
+                        <li>Step 5: Report to appropriate department</li>
+                        <li>Step 6: Follow up if urgent</li>
+                        <li>Step 7: Mark room status correctly</li>
+                        <li>Step 8: Update supervisor on resolution</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3>Guest Complaints</h3>
+                    <ul>
+                        <li>Listen without interrupting</li>
+                        <li>Apologize sincerely: "I'm sorry for the inconvenience"</li>
+                        <li>Don't make excuses or blame others</li>
+                        <li>Offer immediate solution if possible</li>
+                        <li>Get supervisor if you can't resolve</li>
+                        <li>Follow up to ensure satisfaction</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3>Common Issues & Solutions</h3>
+                    <ul>
+                        <li>No hot water: Check if problem is building-wide</li>
+                        <li>TV not working: Check power, batteries, connections</li>
+                        <li>Key card issues: Send guest to front desk</li>
+                        <li>Noisy room: Offer to move guest if available</li>
+                        <li>Dirty room complaint: Re-clean immediately</li>
+                        <li>Missing amenities: Deliver personally with apology</li>
+                    </ul>
+                </div>
+
+                <div class="section tip">
+                    <h3>Prevention Tips</h3>
+                    <ul>
+                        <li>Double-check room before marking complete</li>
+                        <li>Test all lights, AC, TV during cleaning</li>
+                        <li>Report potential problems before guest finds them</li>
+                        <li>Keep supervisor informed of recurring issues</li>
+                        <li>Learn from mistakes - don't repeat them</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTheme(themeId) {
+            const themes = document.querySelectorAll('.theme');
+            const tabs = document.querySelectorAll('.tab');
+            
+            themes.forEach(theme => theme.classList.remove('active'));
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            document.getElementById(themeId).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
